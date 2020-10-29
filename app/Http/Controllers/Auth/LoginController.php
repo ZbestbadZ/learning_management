@@ -26,7 +26,35 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+
+    // public function login(Request $request)
+    // {
+    //     $this->validateLogin($request);
+
+    //     if ($this->attemptLogin($request)) {
+    //         $user = $this->guard()->user();
+    //         $user->generateToken();
+
+    //         return response()->json([
+    //             'data' => $user->toArray(),
+    //         ]);
+    //     }
+
+    //     return $this->sendFailedLoginResponse($request);
+    // }
+
+    // public function logout(Request $request)
+    // {
+    //     $user = Auth::guard('api')->user();
+
+    //     if ($user) {
+    //         $user->api_token = null;
+    //         $user->save();
+    //     }
+
+    //     return response()->json(['data' => 'User logged out.'], 200);
+    // }
 
     /**
      * Create a new controller instance.
@@ -37,4 +65,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     if ($user->role == 1){
+    //         return redirect()->route('admin.list_user');
+    //     }
+    //     else {
+    //         return redirect('user/list_subject');
+    //     }
+    // }
 }

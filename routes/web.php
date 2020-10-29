@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['isadmin']], function () {
+});
