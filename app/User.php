@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models;
+use App\Models\Notify;
 
 class User extends Authenticatable
 {
@@ -18,16 +17,26 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','score',
+        'name', 'email', 'password','ma_sv', 'achievement', 'role'
     ];
 
-    public function generateToken()
-    {
-        $this->api_token = str_random(60);
-        $this->save();
 
-        return $this->api_token;
+    public function notify() {
+        return $this->hasMany(Notify::class, 'user_id', 'id');
     }
+
+    public function progress() {
+        return $this->hasMany(Progress::class, 'user_id', 'id');
+    }
+
+
+    // public function generateToken()
+    // {
+    //     $this->api_token = str_random(60);
+    //     $this->save();
+
+    //     return $this->api_token;
+    // }
 
     /**
      * The attributes that should be hidden for arrays.

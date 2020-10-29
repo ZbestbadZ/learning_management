@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     // public function login(Request $request)
     // {
@@ -65,4 +65,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     if ($user->role == 1){
+    //         return redirect()->route('admin.list_user');
+    //     }
+    //     else {
+    //         return redirect('user/list_subject');
+    //     }
+    // }
 }

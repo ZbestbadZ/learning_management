@@ -13,8 +13,11 @@ class DatabaseSeeder extends Seeder
     {
         $classes = [
             UserSeeder::class,
+            NotifySeeder::class,
+            SubjectSeeder::class,
+            ProgressSeeder::class,
         ];
 
-        $this->call($classes); 
+        $this->call($classes);
     }
 }

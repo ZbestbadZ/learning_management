@@ -21,10 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::post('register', 'Auth\RegisterController@register');  
-// Route::post('login', 'Auth\LoginController@login');
-// Route::post('logout', 'Auth\LoginController@logout');
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+});
 
-Route::group(['prefix'=>'user'], function() {
-    
+Route::group(['prefix' => 'admin', 'middleware' => ['isadmin']], function () {
 });
