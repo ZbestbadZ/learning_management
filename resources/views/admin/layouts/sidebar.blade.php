@@ -7,7 +7,7 @@
                 </div>
 
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
-                    <a href="#" class="btn btn-primary">Tạo thông báo</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notifyModal">Tạo thông báo</button>
                 </div>
             </div>
         </div>

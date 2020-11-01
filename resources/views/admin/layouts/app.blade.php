@@ -31,5 +31,9 @@
         </div>
     </div>
 
+    <script>
+        $("div.alert").delay(1000).slideUp();
+    </script>
+
 </body>
 </html>

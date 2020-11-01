@@ -14,7 +14,7 @@ class NotifySeeder extends Seeder
     {
         for ($i = 1; $i <= 20 ; $i++) {
             DB::table('notifies')->insert([
-                'user_id'=> $i,
+                'user_id'=> 1,
                 'name' => 'name_notify'.($i),
                 'notify' => 'thong bao',
             ]);

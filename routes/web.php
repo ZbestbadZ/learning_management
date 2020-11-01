@@ -29,4 +29,5 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::get('list_user', 'AdminController@getListUser')->name('admin.user.list');
+    Route::post('notify', 'AdminController@createNotify')->name('notify');
 });
