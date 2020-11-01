@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use App\Models\Subject;
 use App\Models\Progress;
 
@@ -18,6 +17,19 @@ class SubjectController extends Controller
     {
         $subjects = Subject::paginate(5);
 
-        return view('user.list_subject', ['subjects'=> $subjects]);
+        return view('user.subject.list_subject', ['subjects' => $subjects]);
+    }
+
+    // search header
+    public function getSearch(Request $request)
+    {
+        if ($request->search != '') {
+            $search = $request->search;
+            $subject = Subject::where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('ma_mh', $request->search)
+                ->get();
+        }
+
+        return view('user.subject.search_subject', ['subject' => $subject, 'search' => $search]);
     }
 }
