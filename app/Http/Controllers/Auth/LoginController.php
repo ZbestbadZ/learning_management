@@ -69,10 +69,10 @@ class LoginController extends Controller
     // protected function authenticated(Request $request, $user)
     // {
     //     if ($user->role == 1){
-    //         return redirect()->route('admin.list_user');
+    //         return redirect('/home');
     //     }
     //     else {
-    //         return redirect('user/list_subject');
+    //         return redirect('/home');
     //     }
     // }
 }
