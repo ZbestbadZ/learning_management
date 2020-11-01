@@ -28,11 +28,6 @@
                             </li>
                         @endif
                     @else
-                        <a class="nav-link" href="#" role="button" title="Thông báo">
-                        <span style="margin-right: 15px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                        </svg></span>
-                        </a>
                         <li class="nav-item dropdown">
 
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -62,22 +57,5 @@
             </div>
         </div>
     </nav>
-@if (Auth::check())
-    <div class="header1">
-        <div class="header2">
-            <a href="/home"><i class="fa fa-home"></i>Trang chủ</a>
-            <a href="/user/list_subject">Danh sách môn học</a>
-            <a href="#huongdan">Hướng dẫn</a>
-            <a href="#tintuc">Tin Tức</a>
-        </div>
-        <div class="search-container">
-            <form method="GET" action="{{route('search')}}">
-                <input type="text" placeholder="Tìm kiếm môn học..." name="search">
-                {{ csrf_field() }}
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
-@endif
 
 </header>
