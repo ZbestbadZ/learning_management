@@ -20,7 +20,7 @@
                         @yield('content')
                     </div>
                 </div>
-                
+
                 <div class="rightcolumn">
                     <!-- sidebar -->
                     <div>

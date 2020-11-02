@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subject;
-use App\Models\Progress;
+use App\Models\Notify;
+use Carbon\Carbon;
+use App\User;
 
 class SubjectController extends Controller
 {
@@ -16,8 +18,9 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::paginate(5);
+        $subject = Subject::all();
 
-        return view('user.subject.list_subject', ['subjects' => $subjects]);
+        return view('user.subject.list_subject',compact('subject'), ['subjects' => $subjects]);
     }
 
     // search header
@@ -31,5 +34,13 @@ class SubjectController extends Controller
         }
 
         return view('user.subject.search_subject', ['subject' => $subject, 'search' => $search]);
+    }
+
+    public function getListNotify()
+    {
+        $notify = Notify::paginate(5);
+        $subject = Subject::all();
+        $user = User::with('notify')->first();
+        return view('user.notify.list_notify', compact('notify', 'user', 'subject'));
     }
 }

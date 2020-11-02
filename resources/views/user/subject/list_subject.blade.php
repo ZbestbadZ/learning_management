@@ -10,12 +10,12 @@
                 </div>
 
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
-                    @foreach ($subjects as $subject)
+                    @foreach ($subjects as $subj)
                     <a href="#">
                     <div class="card" style="background-color: rgb(230, 211, 205)"><br>
                         <h5><p class="ml-3">
                             <a href="#" class="btn btn-primary">
-                                <b>{{$subject->name}}</b>
+                                <b>{{$subj->name}}</b>
                             </a>
                         </p></h5>
                     </div><br>

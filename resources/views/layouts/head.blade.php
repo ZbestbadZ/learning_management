@@ -52,12 +52,12 @@
 
         .leftcolumn {
         float: left;
-        width: 70%;
+        width: 75%;
         }
 
         .rightcolumn {
         float: left;
-        width: 28%;
+        width: 24%;
         }
 
         @media screen and (max-width: 700px) {
@@ -116,5 +116,14 @@
             border: 1px solid #ccc;
         }
         }
+        .counter.counter-lg {
+            top: -24px !important;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+
     </style>
 </head>

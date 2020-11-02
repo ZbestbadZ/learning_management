@@ -12,11 +12,11 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i<=20 ; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             DB::table('subjects')->insert([
-                'name'=> 'name_subject'.($i+1),
-                'ma_mh'=> 'INT3307_7'.($i+1),
-                'description' => 'đây là môn học yêu thích của bạn'
+                'name' => 'Tên môn học' . ($i + 1),
+                'ma_mh' => 'INT3307_' . ($i + 1),
+                'description' => 'Đây là môn học yêu thích của bạn'
             ]);
         }
     }

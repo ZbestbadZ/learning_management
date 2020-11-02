@@ -23,8 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('list_subject', 'SubjectController@index')->name('user.list_subject_');
-    Route::get('search_subject','SubjectController@getSearch')->name('search');
-
+    Route::get('search_subject', 'SubjectController@getSearch')->name('search');
+    Route::get('list_notify', 'SubjectController@getListNotify')->name('list_notify');
+    Route::get('list_student', 'UserController@index')->name('list_student');
+    Route::get('search_student', 'UserController@getSearchStudent')->name('search_student');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {

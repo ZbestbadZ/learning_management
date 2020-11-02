@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class NotifySeeder extends Seeder
 {
@@ -15,8 +16,9 @@ class NotifySeeder extends Seeder
         for ($i = 1; $i <= 20 ; $i++) {
             DB::table('notifies')->insert([
                 'user_id'=> 1,
-                'name' => 'name_notify'.($i),
-                'notify' => 'thong bao',
+                'name' => 'Thông báo'.($i),
+                'notify' => 'Đây là Nội dung thông báo '.($i),
+                'created_at' => Carbon::now()
             ]);
         }
 
