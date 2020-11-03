@@ -16,6 +16,9 @@ class SubjectSeeder extends Seeder
             DB::table('subjects')->insert([
                 'name' => 'Tên môn học' . ($i + 1),
                 'ma_mh' => 'INT3307_' . ($i + 1),
+                'giang_vien' => 'TS.Dương Lê Minh',
+                'email_gv' => 'minhdl@vnu.uet.edu.vn',
+                'ki_hoc' => 'Học kì I năm 2020 - 2021',
                 'description' => 'Đây là môn học yêu thích của bạn'
             ]);
         }

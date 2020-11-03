@@ -15,9 +15,12 @@ class CreateSubjectsTable extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);
+            $table->string('name', 50);
             $table->string('ma_mh', 20);
             $table->string('description', 50);
+            $table->string('giang_vien', 20);
+            $table->string('email_gv');
+            $table->string('ki_hoc');
             $table->timestamps();
         });
     }

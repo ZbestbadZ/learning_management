@@ -8,7 +8,7 @@ use App\Models\Subject;
 
 class Progress extends Model
 {
-    protected $table = 'progreses';
+    protected $table = 'progresses';
 
     protected $fillable = [
         'user_id', 'subject_id', 'score', 'rate',

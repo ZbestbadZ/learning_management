@@ -6,7 +6,7 @@
         <div class="col-md-11 col-xs-11">
             <div class="card">
                 <div class="card-header">
-                    <h3>Danh sách thành viên</h3>
+                    <h3>Danh sách thành viên: lớp môn học ...</h3>
                     <div class="search-container">
                         <form method="GET" action="{{ route('search_student') }}">
                             <input type="text" placeholder="Tìm kiếm thành viên..." name="search_student">

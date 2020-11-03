@@ -12,13 +12,15 @@ class ProgressSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i<=20 ; $i++) {
-            DB::table('progresses')->insert([
-                'user_id'=> $i,
-                'subject_id'=> $i,
-                'score' => rand(3, 10),
-                'rate' => 'danh gia cua giang vien'
-            ]);
+        for ($i = 1; $i <= 20; $i++) {
+            for ($j = 1; $j <= 20; $j++) {
+                DB::table('progresses')->insert([
+                    'user_id' => $j+1,
+                    'subject_id' => $i,
+                    'score' => rand(3, 10),
+                    'rate' => 'danh gia cua giang vien'
+                ]);
+            }
         }
     }
 }

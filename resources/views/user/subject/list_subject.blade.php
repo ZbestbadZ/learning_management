@@ -11,15 +11,21 @@
 
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
                     @foreach ($subjects as $subj)
-                    <a href="#">
-                    <div class="card" style="background-color: rgb(230, 211, 205)"><br>
-                        <h5><p class="ml-3">
-                            <a href="#" class="btn btn-primary">
-                                <b>{{$subj->name}}</b>
-                            </a>
-                        </p></h5>
-                    </div><br>
-                    </a>
+                        <a href="#">
+                            <div class="card" style="background-color: rgb(230, 211, 205)"><br>
+                                <h5>
+                                    <p class="ml-3">
+                                        <a href="#">
+                                        <b title="{{$subj->ma_mh}}">{{ $subj->name }}</b>
+                                        </a>
+                                    </p>
+                                </h5>
+                                <div class="" style="margin-left: 15px;">
+                                <p style="float: left">Giảng viên: <span title="{{$subj->email_gv}}">{{ $subj->giang_vien }}</span></p>
+                                    <p style="float: right; margin-right:15px">{{$subj->ki_hoc}}</p>
+                                </div>
+                            </div><br>
+                        </a>
                     @endforeach
                     {{ $subjects->links() }}
                 </div>

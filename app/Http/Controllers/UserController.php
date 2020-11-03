@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Subject;
+use App\Models\Progress;
 
 class UserController extends Controller
 {
     // list students
     public function index()
     {
-        $user = User::paginate(10);
+        $user = User::with('progress')->paginate(10);
         $subject = Subject::all();
 
         return view('user.student.list_student', compact('user', 'subject'));

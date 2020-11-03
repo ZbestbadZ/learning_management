@@ -12,22 +12,22 @@
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
                     @foreach ($notify as $noti)
 
-                    <div class="card" style="background-color: rgb(230, 211, 205)"><br>
-                        <p class="ml-3">
+                        <div class="card" style="background-color: rgb(230, 211, 205)"><br>
+                            <p class="ml-3">
 
-                            <a href="#" title="Thông báo" data-toggle="popover" data-placement="right" data-content="{{$noti->notify}}">
-                                <b>{{$noti->name}}</b>
-                            </a>
+                                <a href="#" title="Thông báo" data-toggle="popover" data-placement="right"
+                                    data-content="{{ $noti->notify }}">
+                                    <b>{{ $noti->name }}</b>
+                                </a>
                             <div class="" style="margin-left: 15px;">
-                                <p>{{$noti->notify}}</p>
-                                <p style="float: left">Người gửi: {{$user->name}}</p>
+                                <p>{{ $noti->notify }}</p>
+                                <p style="float: left">Người gửi: {{ $user->name }}</p>
                                 <p style="float: right; margin-right:15px">
-                                    {{ \Carbon\Carbon::createFromTimeStamp(strtotime($noti->created_at))
-                                    ->diffForHumans() }}
+                                    {{ \Carbon\Carbon::createFromTimeStamp(strtotime($noti->created_at))->diffForHumans() }}
                                 </p>
                             </div>
-                        </p>
-                    </div><br>
+                            </p>
+                        </div><br>
 
                     @endforeach
                     {{ $notify->links() }}
