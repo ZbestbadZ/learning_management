@@ -5,11 +5,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Learning Management</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -125,5 +126,23 @@
             height: 100%;
         }
 
+        a, a:hover, a:focus {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        i, span {
+            display: inline-block;
+        }
+
+        .expand_caret {
+            transform: scale(1.6);
+            margin-left: 8px;
+            margin-top: -4px;
+        }
+        a[aria-expanded='false'] > .expand_caret {
+            transform: scale(1.6) rotate(-90deg);
+        }
     </style>
 </head>
