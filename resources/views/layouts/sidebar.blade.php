@@ -37,10 +37,7 @@
                 <div class="card-header">
                     <h3>Timeline</h3>
                 </div>
-
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
-
-
                 </div>
             </div>
         </div>
