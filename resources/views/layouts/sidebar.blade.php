@@ -21,7 +21,7 @@
                                         <a href="#homesub" data-toggle="collapse" aria-expanded="false">
                                             <i class="expand_caret fa fa-caret-down" style="font-size:18px;margin-left:15px;"></i>&nbsp;&nbsp;&nbsp;{{ $sub->ma_mh }}</a>
                                         <ul id="homesub" class="collapse list-unstyled">
-                                            <li><a href="/user/list_student" style="margin-left:35px;"><i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Danh sách thành viên</a></li>
+                                        <li><a href="/user/list_student/?index={{$sub->ma_mh}}" style="margin-left:35px;"><i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Danh sách thành viên</a></li>
                                             <li><a href="#" style="margin-left:35px;"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp;Điểm</a></li>
                                             <li><a href="#" style="margin-left:35px;"><i class="fa fa-commenting" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Đánh giá của giảng viên</a></li>
                                         </ul>
@@ -35,7 +35,7 @@
             <hr><br>
             <div class="card">
                 <div class="card-header">
-                    <h3>Timeline</h3>
+                    <h3>Xếp hạng điểm</h3>
                 </div>
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
                 </div>

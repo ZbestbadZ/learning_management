@@ -10,15 +10,16 @@ use App\Models\Progress;
 class UserController extends Controller
 {
     // list students
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::with('progress')->paginate(10);
+        $user = User::paginate(10);
         $subject = Subject::all();
-
-        return view('user.student.list_student', compact('user', 'subject'));
+        $index = $request->index;
+        return view('user.student.list_student', compact('user', 'subject', 'index'));
     }
 
-    public function getSearchStudent(Request $request) {
+    public function getSearchStudent(Request $request)
+    {
         if ($request->search_student != '') {
             $search_student = $request->search_student;
             $students = User::where('name', 'like', '%' . $request->search_student . '%')
@@ -29,5 +30,6 @@ class UserController extends Controller
         }
 
         return view('user.student.search_student', ['students' => $students, 'search_student' => $search_student, 'subject' => $subject]);
-    }
+
+   }
 }
