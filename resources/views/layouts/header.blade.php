@@ -29,7 +29,8 @@
                             </li>
                         @endif
                     @else
-                        <a class="nav-link popover-region-toggle" href="{{route('list_notify')}}" role="button" title="Thông báo">
+                        <a class="nav-link popover-region-toggle" href="{{ route('list_notify') }}" role="button"
+                            title="Thông báo">
                             <span style="margin-right: 15px;"><svg width="1em" height="1em" viewBox="0 0 16 16"
                                     class="bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -52,7 +53,7 @@
                                 <a href="#" class="dropdown-item"><i class="fa fa-gear"
                                         style="margin-right: 10px;"></i>{{ __('Cài đặt') }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                                            document.getElementById('logout-form').submit();">
                                     <i class="fa fa-sign-out" style="margin-right: 10px;"></i>
                                     {{ __('Logout') }}
                                 </a>
@@ -78,8 +79,8 @@
             </div>
             <div class="search-container">
                 <form method="GET" action="{{ route('search') }}">
-                    <input type="text" placeholder="Tìm kiếm môn học..." name="search">
                     {{ csrf_field() }}
+                    <input type="text" placeholder="Tìm kiếm môn học..." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>

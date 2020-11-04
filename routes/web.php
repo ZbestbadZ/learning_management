@@ -27,6 +27,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('list_notify', 'SubjectController@getListNotify')->name('list_notify');
     Route::get('list_student', 'UserController@index')->name('list_student');
     Route::get('search_student', 'UserController@getSearchStudent')->name('search_student');
+    Route::get('score', 'SubjectController@getScore')->name('score');
+    Route::get('rate', 'SubjectController@getRate')->name('rate');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {

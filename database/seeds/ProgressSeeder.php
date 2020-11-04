@@ -17,8 +17,8 @@ class ProgressSeeder extends Seeder
                 DB::table('progresses')->insert([
                     'user_id' => $j+1,
                     'subject_id' => $i,
-                    'score' => rand(3, 10),
-                    'rate' => 'danh gia cua giang vien'
+                    'score' => rand(5, 10),
+                    'rate' => 'Có ý thức chăm chỉ trong học tập'
                 ]);
             }
         }

@@ -6,6 +6,14 @@
         <div class="col-md-11 col-xs-11">
             <div class="card">
                 <div class="card-header">
+                    @if(session('thongbao'))
+
+                    <div class="alert alert-success" style="width:50%">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                        {{session('thongbao')}}
+                    </div>
+
+                    @endif
                 <h3>Danh sách thành viên - Lớp môn học {{$index}}</h3>
                     <div class="search-container">
                         <form method="GET" action="{{ route('search_student') }}">

@@ -5,6 +5,14 @@
     <div class="row justify-content">
         <div class="col-md-11 col-xs-11">
             <div class="card">
+                @if(session('thongbao'))
+
+                    <div class="alert alert-success" style="width:50%">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                        {{session('thongbao')}}
+                    </div>
+
+                @endif
                 <div class="card-header">
                     <h3><i class="fa fa-bars" style="margin-right:15px;"></i>Danh sách môn học</h3>
                 </div>
