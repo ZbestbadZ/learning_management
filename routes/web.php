@@ -29,6 +29,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('search_student', 'UserController@getSearchStudent')->name('search_student');
     Route::get('score', 'SubjectController@getScore')->name('score');
     Route::get('rate', 'SubjectController@getRate')->name('rate');
+    Route::get('all_score', 'SubjectController@getAllScore')->name('all_score');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {

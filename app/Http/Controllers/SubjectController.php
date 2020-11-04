@@ -76,4 +76,15 @@ class SubjectController extends Controller
         $subject = Subject::all();
         return view('user.rate.myrate', compact('index', 'subject', 'rate'));
     }
+
+    public function getAllScore(Request $request) {
+
+        $id      = Auth::user()->id;
+        $scores   = Progress::where('user_id', $id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('ma_mh', 'score')
+            ->get();
+        $subject = Subject::all();
+        return view('user.score.allscore', compact('subject', 'scores'));
+    }
 }
