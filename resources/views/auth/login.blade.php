@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="all" />
     <!-- Style-CSS -->
     <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Font-Awesome-Icons-CSS -->
     <!-- //css files -->
     <!-- online-fonts -->
@@ -70,7 +72,7 @@
                         @enderror
                     </div>
                     <div class="sub-w3l">
-                        <h6><a href="#">Forgot Password?</a></h6>
+                        <h6><a href="/register">Register Here<i class="fa fa-mail-reply"></i></a></h6>
                         <div class="right-w3l">
                             <input type="submit" value="Login">
                         </div>
