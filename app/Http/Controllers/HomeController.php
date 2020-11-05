@@ -37,6 +37,11 @@ class HomeController extends Controller
             ->orderBy('Score', 'desc')
             ->get();
         $data        = $total_score->pluck('name')->toArray();
-        return view('home', compact('subject', 'total_score', 'i', 'data'));
+        $scores  = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh')
+            ->get();
+
+        return view('home', compact('subject', 'total_score', 'i', 'data', 'scores'));
     }
 }

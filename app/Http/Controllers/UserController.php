@@ -21,7 +21,10 @@ class UserController extends Controller
             ->select('users.*')
             // ->paginate(10);
             ->get();
-        $subject = Subject::all();
+        $scores  = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh')
+            ->get();
         $i       = 1;
         $k       = 1;
         $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
@@ -32,7 +35,7 @@ class UserController extends Controller
             ->get();
         $data        = $total_score->pluck('name')->toArray();
 
-        return view('user.student.list_student', compact('user', 'subject', 'index', 'total_score', 'i', 'k', 'data'));
+        return view('user.student.list_student', compact('user', 'scores', 'index', 'total_score', 'i', 'k', 'data'));
     }
 
     //search students in class
@@ -46,7 +49,10 @@ class UserController extends Controller
                 ->orWhere('ma_sv', $request->search_student)
                 ->orWhere('email', $request->search_student)
                 ->get();
-            $subject = Subject::all();
+            $scores  = Progress::where('user_id', Auth::user()->id)
+                ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+                ->select('name', 'ma_mh')
+                ->get();
         }
         $i              = 1;
         $total_score    = Progress::join('users', 'users.id', '=', 'progresses.user_id')
@@ -57,6 +63,6 @@ class UserController extends Controller
             ->get();
         $data           = $total_score->pluck('name')->toArray();
 
-        return view('user.student.search_student', compact('students', 'search_student', 'subject', 'total_score', 'i', 'data'));
+        return view('user.student.search_student', compact('students', 'search_student', 'scores', 'total_score', 'i', 'data'));
     }
 }

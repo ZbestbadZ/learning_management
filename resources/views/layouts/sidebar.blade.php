@@ -17,17 +17,19 @@
                                 khóa học của tôi
                             </a>
                             <ul class="collapse list-unstyled" id="homeSubmenu">
-                                @foreach ($subject as $sub)
+                                @foreach ($scores as $sub)
                                     <li title="{{ $sub->name }}">
-                                        <a href="#homesub" data-toggle="collapse" aria-expanded="false">
+                                        <a href="#{{ $sub->ma_mh }}" data-toggle="collapse" aria-expanded="false">
                                             <i class="expand_caret fa fa-caret-down"
                                                 style="font-size:18px;margin-left:15px;"></i>&nbsp;&nbsp;&nbsp;{{ $sub->ma_mh }}
                                         </a>
-                                        <ul id="homesub" class="collapse list-unstyled">
-                                        <li><a href="/user/list_student/?index={{ $sub->ma_mh }}"
+                                        <ul id="{{ $sub->ma_mh }}" class="collapse list-unstyled">
+                                            <li><a href="/user/list_student/?index={{ $sub->ma_mh }}"
                                                     style="margin-left:35px;"><i class="fa fa-list-ol"
                                                         aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Danh sách thành
-                                                    viên</a></li>
+                                                    viên
+                                                </a>
+                                            </li>
                                             <li><a href="/user/score/?index={{ $sub->ma_mh }}"
                                                     style="margin-left:35px;"><i class="fa fa-graduation-cap"
                                                         aria-hidden="true"></i>&nbsp;&nbsp;Điểm</a></li>
@@ -50,17 +52,18 @@
             <hr><br>
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fa fa-sort-amount-desc" style="font-size:24px"></i>&nbsp;Xếp hạng điểm</h3><hr>
+                    <h3><i class="fa fa-sort-amount-desc" style="font-size:24px"></i>&nbsp;Xếp hạng điểm</h3>
+                    <hr>
                     <h5>Hạng của tôi:
                         @foreach ($data as $key => $value)
                             @if ($value == Auth::user()->name)
-                                {{$key + 1}}
+                                {{ $key + 1 }}
                             @endif
                         @endforeach
                     </h5>
                 </div>
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
-                    <table class="table table-hover table-bordered table-striped display" >
+                    <table class="table table-hover table-bordered table-striped display">
                         <thead class="thead-dark">
                             <th>STT</th>
                             <th>Tên Sinh viên</th>
@@ -68,18 +71,20 @@
                         </thead>
                         <tbody>
                             @foreach ($total_score as $total)
-                            <tr @if($total->name == Auth::user()->name) class="huyhoang" @endif>
-                                <td>{{$i++}}</td>
-                                <td>{{$total->name}}</td>
-                                <td>{{number_format($total->Score, 2)}}</td>
+                                <tr @if ($total->name == Auth::user()->name)
+                                    class="huyhoang"
+                            @endif>
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $total->name }}</td>
+                            <td>{{ number_format($total->Score, 2) }}</td>
                             </tr>
-                            @endforeach
-                        </tbody>
+@endforeach
+</tbody>
 
-                    </table>
+</table>
 
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 @endif

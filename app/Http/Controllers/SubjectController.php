@@ -20,8 +20,6 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $subjects = Subject::paginate(5);
-        $subject  = Subject::all();
         $i       = 1;
         $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
             ->select('name', DB::raw('AVG(score) as Score'))
@@ -30,8 +28,16 @@ class SubjectController extends Controller
             ->orderBy('Score', 'desc')
             ->get();
         $data        = $total_score->pluck('name')->toArray();
-        
-        return view('user.subject.list_subject', compact('subject', 'total_score', 'i', 'data', 'subjects', 'data'));
+        $scores      = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh')
+            ->get();
+        $subject     = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh', 'ki_hoc', 'giang_vien', 'email_gv')
+            ->paginate(5);
+
+        return view('user.subject.list_subject', compact('total_score', 'i', 'data', 'scores', 'subject'));
     }
 
     // search header
@@ -53,14 +59,22 @@ class SubjectController extends Controller
             ->orderBy('Score', 'desc')
             ->get();
         $data        = $total_score->pluck('name')->toArray();
+        $scores  = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh')
+            ->get();
 
-        return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data'));
+        return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data', 'scores'));
     }
 
     public function getListNotify()
     {
-        $notify  = Notify::paginate(5);
-        $subject = Subject::all();
+        $notify  = Notify::orderBy('created_at', 'desc')
+            ->paginate(5);
+        $scores  = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh')
+            ->get();
         $user    = User::with('notify')->first();
         $i       = 1;
         $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
@@ -71,7 +85,7 @@ class SubjectController extends Controller
             ->get();
         $data        = $total_score->pluck('name')->toArray();
 
-        return view('user.notify.list_notify', compact('notify', 'user', 'subject', 'total_score', 'i', 'data'));
+        return view('user.notify.list_notify', compact('notify', 'user', 'scores', 'total_score', 'i', 'data'));
     }
 
     public function getScore(Request $request)
@@ -91,10 +105,13 @@ class SubjectController extends Controller
             ->havingRaw('AVG(score) > ?', [5])
             ->orderBy('Score', 'desc')
             ->get();
-        $subject = Subject::all();
+        $scores  = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh')
+            ->get();
         $data        = $total_score->pluck('name')->toArray();
 
-        return view('user.score.myscore', compact('index', 'subject', 'score', 'total_score', 'i', 'data'));
+        return view('user.score.myscore', compact('index', 'scores', 'score', 'total_score', 'i', 'data'));
     }
 
     public function getRate(Request $request)
@@ -114,10 +131,13 @@ class SubjectController extends Controller
             ->havingRaw('AVG(score) > ?', [5])
             ->orderBy('Score', 'desc')
             ->get();
-        $subject = Subject::all();
+        $scores  = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh')
+            ->get();
         $data        = $total_score->pluck('name')->toArray();
 
-        return view('user.rate.myrate', compact('index', 'subject', 'rate', 'total_score', 'i', 'data'));
+        return view('user.rate.myrate', compact('index', 'rate', 'total_score', 'i', 'data', 'scores'));
     }
 
     public function getAllScore(Request $request)
@@ -135,8 +155,7 @@ class SubjectController extends Controller
             ->orderBy('Score', 'desc')
             ->get();
         $data        = $total_score->pluck('name')->toArray();
-        $subject = Subject::all();
 
-        return view('user.score.allscore', compact('subject', 'scores', 'total_score', 'i', 'data'));
+        return view('user.score.allscore', compact('scores', 'total_score', 'i', 'data'));
     }
 }
