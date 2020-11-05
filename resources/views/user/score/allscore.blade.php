@@ -20,7 +20,7 @@
                             @foreach($scores as $score)
 
                                 <tr>
-                                    <td>{{$score->ma_mh}}</td>
+                                    <td title="{{$score->name}}">{{$score->ma_mh}}</td>
                                     <td>{{$score->score}}</td>
                                 </tr>
 

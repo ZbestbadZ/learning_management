@@ -7,6 +7,7 @@ use App\User;
 use App\Models\Subject;
 use App\Models\Progress;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -19,7 +20,16 @@ class UserController extends Controller
         // $index3  = $index2->id;
         $user = User::paginate(10);
         $subject = Subject::all();
-        return view('user.student.list_student', compact('user', 'subject', 'index'));
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
+            $data        = $total_score->pluck('name')->toArray();
+
+        return view('user.student.list_student', compact('user', 'subject', 'index', 'total_score', 'i', 'data'));
     }
 
     //search students in class
@@ -35,7 +45,15 @@ class UserController extends Controller
                 ->get();
             $subject = Subject::all();
         }
-        return view('user.student.search_student', ['students' => $students, 'search_student' => $search_student, 'subject' => $subject]);
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
+            $data        = $total_score->pluck('name')->toArray();
 
-   }
+        return view('user.student.search_student', compact('students', 'search_student', 'subject', 'total_score', 'i', 'data'));
+    }
 }

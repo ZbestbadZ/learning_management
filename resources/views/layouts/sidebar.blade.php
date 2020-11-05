@@ -50,10 +50,33 @@
             <hr><br>
             <div class="card">
                 <div class="card-header">
-                    <h3>Xếp hạng điểm</h3>
+                    <h3>Xếp hạng điểm</h3><hr>
+                    <h5>Hạng của tôi:
+                        @foreach ($data as $key => $value)
+                            @if ($value == Auth::user()->name)
+                                {{$key + 1}}
+                            @endif
+                        @endforeach
+                    </h5>
                 </div>
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
-                    <a href="/home" title="Trang chủ hệ thống"><i class="fa fa-home"></i>&nbsp;Trang chủ</a><br>
+                    <table class="table table-hover table-bordered table-striped display" >
+                        <thead class="thead-dark">
+                            <th>STT</th>
+                            <th>Tên Sinh viên</th>
+                            <th>Điểm TB</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($total_score as $total)
+                            <tr @if($total->name == Auth::user()->name) class="huyhoang" @endif>
+                                <td>{{$i++}}</td>
+                                <td>{{$total->name}}</td>
+                                <td>{{number_format($total->Score, 2)}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+
+                    </table>
 
                 </div>
             </div>

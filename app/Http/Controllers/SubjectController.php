@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\User;
 use App\Models\Progress;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SubjectController extends Controller
 {
@@ -21,8 +22,16 @@ class SubjectController extends Controller
     {
         $subjects = Subject::paginate(5);
         $subject  = Subject::all();
-
-        return view('user.subject.list_subject', compact('subject'), ['subjects' => $subjects]);
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
+        $data        = $total_score->pluck('name')->toArray();
+        
+        return view('user.subject.list_subject', compact('subject', 'total_score', 'i', 'data', 'subjects', 'data'));
     }
 
     // search header
@@ -31,13 +40,21 @@ class SubjectController extends Controller
         $search  = $request->search;
         if (empty($search)) {
             return redirect('user/list_subject')->with('thongbao', "Không tìm thấy kết quả tìm kiếm");
-        }
-        else {
+        } else {
             $subject = Subject::where('name', 'like', '%' . $request->search . '%')
                 ->orWhere('ma_mh', $request->search)
                 ->get();
         }
-        return view('user.subject.search_subject', ['subject' => $subject, 'search' => $search]);
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
+        $data        = $total_score->pluck('name')->toArray();
+
+        return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data'));
     }
 
     public function getListNotify()
@@ -45,7 +62,16 @@ class SubjectController extends Controller
         $notify  = Notify::paginate(5);
         $subject = Subject::all();
         $user    = User::with('notify')->first();
-        return view('user.notify.list_notify', compact('notify', 'user', 'subject'));
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
+        $data        = $total_score->pluck('name')->toArray();
+
+        return view('user.notify.list_notify', compact('notify', 'user', 'subject', 'total_score', 'i', 'data'));
     }
 
     public function getScore(Request $request)
@@ -58,9 +84,17 @@ class SubjectController extends Controller
             ->where('subject_id', $index3)
             ->select('score')
             ->first();
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
         $subject = Subject::all();
+        $data        = $total_score->pluck('name')->toArray();
 
-        return view('user.score.myscore', compact('index', 'subject', 'score'));
+        return view('user.score.myscore', compact('index', 'subject', 'score', 'total_score', 'i', 'data'));
     }
 
     public function getRate(Request $request)
@@ -73,18 +107,36 @@ class SubjectController extends Controller
             ->where('subject_id', $index3)
             ->select('rate')
             ->first();
-        $subject = Subject::all();
-        return view('user.rate.myrate', compact('index', 'subject', 'rate'));
-    }
-
-    public function getAllScore(Request $request) {
-
-        $id      = Auth::user()->id;
-        $scores   = Progress::where('user_id', $id)
-            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
-            ->select('ma_mh', 'score')
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
             ->get();
         $subject = Subject::all();
-        return view('user.score.allscore', compact('subject', 'scores'));
+        $data        = $total_score->pluck('name')->toArray();
+
+        return view('user.rate.myrate', compact('index', 'subject', 'rate', 'total_score', 'i', 'data'));
+    }
+
+    public function getAllScore(Request $request)
+    {
+        $id      = Auth::user()->id;
+        $scores  = Progress::where('user_id', $id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh', 'score')
+            ->get();
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
+        $data        = $total_score->pluck('name')->toArray();
+        $subject = Subject::all();
+
+        return view('user.score.allscore', compact('subject', 'scores', 'total_score', 'i', 'data'));
     }
 }
