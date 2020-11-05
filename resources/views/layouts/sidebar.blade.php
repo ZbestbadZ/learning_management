@@ -24,7 +24,7 @@
                                                 style="font-size:18px;margin-left:15px;"></i>&nbsp;&nbsp;&nbsp;{{ $sub->ma_mh }}
                                         </a>
                                         <ul id="homesub" class="collapse list-unstyled">
-                                            <li><a href="/user/list_student/?index={{ $sub->ma_mh }}"
+                                        <li><a href="/user/list_student/?index={{ $sub->ma_mh }}"
                                                     style="margin-left:35px;"><i class="fa fa-list-ol"
                                                         aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Danh sách thành
                                                     viên</a></li>
@@ -50,7 +50,7 @@
             <hr><br>
             <div class="card">
                 <div class="card-header">
-                    <h3>Xếp hạng điểm</h3><hr>
+                    <h3><i class="fa fa-sort-amount-desc" style="font-size:24px"></i>&nbsp;Xếp hạng điểm</h3><hr>
                     <h5>Hạng của tôi:
                         @foreach ($data as $key => $value)
                             @if ($value == Auth::user()->name)
