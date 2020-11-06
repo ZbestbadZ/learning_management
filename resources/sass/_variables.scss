@@ -17,3 +17,17 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$mobile-breakpoint: 320px;
+$tablet-breakpoint: 1024px;
+
+.app {
+	// Mobile value
+	width: 100%;
+	@media (min-width: $mobile-breakpoint) {
+		width: 50%;
+	}
+	@media (min-width: $tablet-breakpoint) {
+	  width: 33.33%;
+	}
+}

@@ -51,6 +51,8 @@ class SubjectController extends Controller
                 ->orWhere('ma_mh', $request->search)
                 ->get();
         }
+        $id = Progress::where('user_id', Auth::user()->id)->select('user_id')->first();
+        // dd($id);
         $i       = 1;
         $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
             ->select('name', DB::raw('AVG(score) as Score'))
@@ -61,10 +63,10 @@ class SubjectController extends Controller
         $data        = $total_score->pluck('name')->toArray();
         $scores  = Progress::where('user_id', Auth::user()->id)
             ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
-            ->select('name', 'ma_mh')
+            ->select('name', 'ma_mh', 'user_id')
             ->get();
 
-        return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data', 'scores'));
+        return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data', 'scores', 'id'));
     }
 
     public function getListNotify()

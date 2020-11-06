@@ -52,18 +52,35 @@
 
         .leftcolumn {
         float: left;
-        width: 70%;
+        width: 75%;
         }
 
         .rightcolumn {
         float: left;
-        width: 28%;
+        width: 25%;
         }
 
         @media screen and (max-width: 700px) {
         .leftcolumn, .rightcolumn {
             width: 100%;
             padding: 0;
+        }
+        .app{
+            width: 100%;
+        }
+        .header1 .search-container {
+            float: none;
+        }
+        .header1 a, .header1 input[type=text], .header1 .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+        .header1 input[type=text] {
+            border: 1px solid #ccc;
         }
         }
 
@@ -72,6 +89,27 @@
         .header1 a {
             float: none;
             width: 100%;
+        }
+        .app{
+            width: 100%;
+        }
+        .leftcolumn, .rightcolumn {
+            width: 100%;
+            padding: 0;
+        }
+        .header1 .search-container {
+            float: none;
+        }
+        .header1 a, .header1 input[type=text], .header1 .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+        .header1 input[type=text] {
+            border: 1px solid #ccc;
         }
         }
         .header1 .search-container {
@@ -101,6 +139,14 @@
         }
 
         @media screen and (max-width: 600px) {
+
+        .leftcolumn, .rightcolumn {
+            width: 100%;
+            padding: 0;
+        }
+        .app{
+            width: 100%;
+        }
         .header1 .search-container {
             float: none;
         }

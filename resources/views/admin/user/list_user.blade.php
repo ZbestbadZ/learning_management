@@ -19,7 +19,7 @@
                 <th>Name</th>
                 <th>Mã sinh viên</th>
                 <th>Email</th>
-                <th>Achievement</th>
+                <th>Vai trò</th>
             </tr>
         </thead>
         <tbody
@@ -30,7 +30,7 @@
                     <td>{{$list->name}}</td>
                     <td>{{$list->ma_sv}}</td>
                     <td>{{$list->email}}</td>
-                    <td>{{$list->achievement}}</td>
+                    <td>Học viên</td>
                 </tr>
             @endif
 
