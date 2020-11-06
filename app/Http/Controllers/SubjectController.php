@@ -69,6 +69,18 @@ class SubjectController extends Controller
         return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data', 'scores', 'id'));
     }
 
+    public function store(Request $request) {
+        
+        $user_subject = Progress::create([
+           'user_id' => Auth::user()->id,
+           'subject_id' => 1,
+           'score' => '8',
+           'rate' => 'abc'
+        ]);
+
+        return redirect('user/list_subject')->with('thongbao', "Đăng kí môn học thành công!");
+    }
+
     public function getListNotify()
     {
         $notify  = Notify::orderBy('created_at', 'desc')

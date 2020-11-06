@@ -17,8 +17,8 @@ class CreateProgressesTable extends Migration
             $table->id();
             $table->tinyInteger('user_id');
             $table->tinyInteger('subject_id');
-            $table->tinyInteger('score');
-            $table->string('rate', 100);
+            $table->tinyInteger('score')->nullable();
+            $table->string('rate', 100)->nullable();
             $table->timestamps();
         });
     }

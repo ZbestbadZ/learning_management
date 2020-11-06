@@ -21,15 +21,23 @@
                                 </h5>
                                 <div class="" style="margin-left: 15px;">
                                     <p style="float: left">Giảng viên: <span
-                                            title="{{ $sub->email_gv }}">{{ $sub->giang_vien }}</span></p>                                        
-                                    <p style="float: right; margin-right:15px">{{ $sub->ki_hoc }}</p>                               
+                                            title="{{ $sub->email_gv }}">{{ $sub->giang_vien }}</span></p>
+                                    <p style="float: right; margin-right:15px">{{ $sub->ki_hoc }}</p>
                                 </div>
                                 @if (empty($id))
-                                <a href="#" style="float: left" class="btn btn-primary">Đăng kí môn học</a>                                                                                    
+                                    <form action="{{ route('register_subject') }}" method="POST">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                        <button type="submit" style="float: left" class="btn btn-primary">Đăng kí môn
+                                            học</button>
+                                    </form>
                                 @elseif (Auth::user()->id != $id->user_id)
-                                <a href="#" style="float: left" class="btn btn-primary">Đăng kí môn học</a>
+                                    <form action="{{ route('register_subject') }}" method="POST">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                        <button type="submit" style="float: left" class="btn btn-primary">Đăng kí môn
+                                            học</button>
+                                    </form>
                                 @else
-                                <a href="#" style="float: left" class="btn btn-primary">Đã đăng kí môn học</a>                              
+                                    <a href="#" style="float: left" class="btn btn-primary">Đã đăng kí môn học</a>
                                 @endif
                             </div><br>
                         </a>
