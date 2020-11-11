@@ -60,6 +60,7 @@
                                 {{ $key + 1 }}
                             @endif
                         @endforeach
+
                     </h5>
                 </div>
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
@@ -71,7 +72,7 @@
                         </thead>
                         <tbody>
                             @foreach ($total_score as $total)
-                                <tr @if ($total->name == Auth::user()->name)
+                                <tr @if ($total->name === Auth::user()->name)
                                     class="huyhoang"
                             @endif>
                             <td>{{ $i++ }}</td>

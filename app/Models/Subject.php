@@ -10,7 +10,7 @@ class Subject extends Model
     protected $table = 'subjects';
 
     protected $fillable = [
-        'name', 'ma_mh', 'description'
+        'name', 'ma_mh', 'description', 'giang_vien', 'email_gv', 'ki_hoc'
     ];
 
     public function progress() {

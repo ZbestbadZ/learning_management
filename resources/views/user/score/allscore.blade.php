@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">
                 <h3>Điểm tất cả các môn học của bạn</h3>
+                <i style="float: right; font-size: 15px; margin-right:5px;">Học kì I năm học 2020 - 2021</i>
                 </div>
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
                     <table class="table table-hover table-bordered table-active display" >

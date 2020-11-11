@@ -30,7 +30,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('score', 'SubjectController@getScore')->name('score');
     Route::get('rate', 'SubjectController@getRate')->name('rate');
     Route::get('all_score', 'SubjectController@getAllScore')->name('all_score');
-    Route::post('register_subject', 'SubjectController@store')->name('register_subject');
+    Route::get('subject/{id}', 'SubjectController@getDetailSubject');
+    Route::post('register_subject/{id}', 'SubjectController@store');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {

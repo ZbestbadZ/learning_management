@@ -44,6 +44,8 @@ class SubjectController extends Controller
     public function getSearch(Request $request)
     {
         $search  = $request->search;
+        // dd($search);
+
         if (empty($search)) {
             return redirect('user/list_subject')->with('thongbao', "Không tìm thấy kết quả tìm kiếm");
         } else {
@@ -51,8 +53,7 @@ class SubjectController extends Controller
                 ->orWhere('ma_mh', $request->search)
                 ->get();
         }
-        $id = Progress::where('user_id', Auth::user()->id)->select('user_id')->first();
-        // dd($id);
+
         $i       = 1;
         $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
             ->select('name', DB::raw('AVG(score) as Score'))
@@ -66,16 +67,41 @@ class SubjectController extends Controller
             ->select('name', 'ma_mh', 'user_id')
             ->get();
 
-        return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data', 'scores', 'id'));
+        return view('user.subject.search_subject', compact('subject', 'search', 'total_score', 'i', 'data', 'scores'));
     }
 
-    public function store(Request $request) {
-        
+    public function getDetailSubject(Request $request, $id) {
+        $index = $request->index;
+        $subject = Subject::find($id);
+        $user_id = Progress::where('user_id', Auth::user()->id)
+        ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+        ->where('subjects.ma_mh', $index)
+        ->select('user_id', 'ma_mh')->first();
+
+        $i       = 1;
+        $total_score = Progress::join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('name', DB::raw('AVG(score) as Score'))
+            ->groupBy('name')
+            ->havingRaw('AVG(score) > ?', [5])
+            ->orderBy('Score', 'desc')
+            ->get();
+        $data    = $total_score->pluck('name')->toArray();
+
+        $scores  = Progress::where('user_id', Auth::user()->id)
+            ->join('subjects', 'progresses.subject_id', '=', 'subjects.id')
+            ->select('name', 'ma_mh', 'user_id')
+            ->get();
+
+        return view('user.subject.detail_subject', compact('subject', 'total_score', 'i', 'data', 'scores', 'user_id'));
+    }
+
+    public function store(Request $request, $id) {
+
+        $subject = Subject::find($id);
+
         $user_subject = Progress::create([
            'user_id' => Auth::user()->id,
-           'subject_id' => 1,
-           'score' => '8',
-           'rate' => 'abc'
+           'subject_id' => $subject->id
         ]);
 
         return redirect('user/list_subject')->with('thongbao', "Đăng kí môn học thành công!");
