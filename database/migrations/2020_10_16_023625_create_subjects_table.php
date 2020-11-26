@@ -18,9 +18,9 @@ class CreateSubjectsTable extends Migration
             $table->string('name', 50);
             $table->string('ma_mh', 20);
             $table->string('description', 50);
-            $table->string('giang_vien', 20);
-            $table->string('email_gv');
-            $table->string('ki_hoc');
+            $table->string('giang_vien', 20)->nullable();
+            $table->string('email_gv')->nullable();
+            $table->string('ki_hoc')->nullable();
             $table->timestamps();
         });
     }

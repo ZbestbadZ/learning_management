@@ -37,4 +37,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::get('list_user', 'AdminController@getListUser')->name('admin.user.list');
     Route::post('notify', 'AdminController@createNotify')->name('notify');
+    Route::get('create_subject', 'AdminController@create')->name('add_subject');
+    Route::post('create', 'AdminController@store')->name('create_subject');
 });
