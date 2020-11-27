@@ -8,6 +8,8 @@ use App\Models\Notify;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Subject;
 use App\Http\Requests\CreateSubjectRequest;
+use Illuminate\Http\Request;
+use App\Models\Progress;
 
 class AdminController extends Controller
 {
@@ -48,5 +50,23 @@ class AdminController extends Controller
             'ki_hoc' => 'Học kì I năm 2020 - 2021',
         ]);
         return redirect('admin/list_user')-> with('thongbao','Thêm môn học thành công!');
+    }
+
+    public function list_subject() {
+        $subject = Subject::paginate(5);
+        return view('admin.subject.list_subject', compact('subject'));
+    }
+
+    public function getListStudentClass(Request $request) {
+
+        $subject = Subject::all();
+        $index   = $request->index;
+        $user  = Progress::join('subjects', 'subjects.id', '=', 'progresses.subject_id')
+            ->where('ma_mh', $index)
+            ->join('users', 'users.id', '=', 'progresses.user_id')
+            ->select('users.*', 'progresses.*')
+            ->get();
+            $k       = 1;
+        return view('admin.subject.list_student_in_subject', compact('subject', 'index', 'user', 'k'));
     }
 }

@@ -39,4 +39,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::post('notify', 'AdminController@createNotify')->name('notify');
     Route::get('create_subject', 'AdminController@create')->name('add_subject');
     Route::post('create', 'AdminController@store')->name('create_subject');
+    Route::get('list_subject', 'AdminController@list_subject');
+    Route::get('list_student_in_subject', 'AdminController@getListStudentClass');
 });

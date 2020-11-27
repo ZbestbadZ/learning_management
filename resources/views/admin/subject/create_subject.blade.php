@@ -13,18 +13,24 @@
                         <div class="form-group">
                             <label for="name">Tên môn học </label>
                             <input class="form-control" type="text" name="name" id="name" value="" autofocus>
-                            <div class="text-danger"><strong><span id="error_name"></span></strong></div>
+                            @error('name')
+                                <div class="text-danger" ><strong>{{ $message }}</strong></div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="ma_mh">Mã môn học</label>
                             <input class="form-control" type="text" name="ma_mh" id="ma_mh" value="">
-                            <div class="text-danger"><strong><span id="error_ma_mh"></span></strong></div>
+                            @error('ma_mh')
+                                <div class="text-danger" ><strong>{{ $message }}</strong></div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="description">Mô tả</label>
                             <input class="form-control" type="text" name="description" id="description" value="">
-                            <div class="text-danger"><strong><span id="error_description"></span></strong></div>
+                            @error('description')
+                                <div class="text-danger" ><strong>{{ $message }}</strong></div>
+                            @enderror
                         </div>
 
                         {{-- <div class="form-group">

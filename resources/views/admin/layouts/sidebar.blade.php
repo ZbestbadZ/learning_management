@@ -11,6 +11,10 @@
                     <hr>
                     <a href="/admin/create_subject" class="btn btn-primary">Thêm môn học</a>
                     <hr>
+                    <a href="/admin/list_user" class="btn btn-primary">Danh sách sinh viên</a>
+                    <hr>
+                    <a href="/admin/list_subject" class="btn btn-primary">Môn học của bạn</a>
+                    <hr>
                 </div>
             </div>
         </div>
