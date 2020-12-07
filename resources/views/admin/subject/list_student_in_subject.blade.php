@@ -29,6 +29,7 @@
                                 <th>Email</th>
                                 <th>Điểm</th>
                                 <th>Đánh giá</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>
@@ -52,6 +53,13 @@
                                         @else
                                             <a href="#">Đánh giá</a>
                                         @endif
+                                    </td>
+                                    <td>
+                                    <form method="POST" action="{{ url("admin/{$list->user_id}/?index={$index}") }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit" onclick="return myFunction();"><i class="fa fa-trash"></i></button>
+                                    </form>
                                     </td>
                                 </tr>
                             @endforeach

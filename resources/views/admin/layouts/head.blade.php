@@ -52,12 +52,12 @@
 
         .leftcolumn {
         float: left;
-        width: 75%;
+        width: 77%;
         }
 
         .rightcolumn {
         float: left;
-        width: 25%;
+        width: 22%;
         }
 
         @media screen and (max-width: 700px) {

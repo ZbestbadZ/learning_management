@@ -41,4 +41,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::post('create', 'AdminController@store')->name('create_subject');
     Route::get('list_subject', 'AdminController@list_subject');
     Route::get('list_student_in_subject', 'AdminController@getListStudentClass');
+    Route::delete('/{user_id}', 'AdminController@destroy')->name('destroy');
 });

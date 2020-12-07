@@ -14,8 +14,8 @@ class SubjectSeeder extends Seeder
     {
         for ($i = 1; $i <= 20; $i++) {
             DB::table('subjects')->insert([
-                'name' => 'Tên môn học' . ($i + 1),
-                'ma_mh' => 'INT3307_' . ($i + 1),
+                'name' => 'Tên môn học' . ($i),
+                'ma_mh' => 'INT3307_' . ($i),
                 'giang_vien' => 'TS.Dương Lê Minh',
                 'email_gv' => 'minhdl@vnu.uet.edu.vn',
                 'ki_hoc' => 'Học kì I năm 2020 - 2021',

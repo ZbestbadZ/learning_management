@@ -20,27 +20,31 @@ class AdminController extends Controller
     }
 
     // show list users
-    public function getListUser(){
+    public function getListUser()
+    {
         $user = User::paginate(10);
-        return view('admin.user.list_user',compact('user'));
+        return view('admin.user.list_user', compact('user'));
     }
 
     // create notify
-    public function createNotify(NotifyRequest $request) {
+    public function createNotify(NotifyRequest $request)
+    {
         $notify = Notify::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'notify' => $request->notify
         ]);
-        return redirect('admin/list_user')-> with('thongbao','Tạo thông báo thành công!');
+        return redirect('admin/list_user')->with('thongbao', 'Tạo thông báo thành công!');
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.subject.create_subject');
     }
 
     //create subject
-    public function store(CreateSubjectRequest $request) {
+    public function store(CreateSubjectRequest $request)
+    {
         $subject = Subject::create([
             'name' => $request->name,
             'ma_mh' => $request->ma_mh,
@@ -49,15 +53,17 @@ class AdminController extends Controller
             'email_gv' => 'minhdl@gmail.com',
             'ki_hoc' => 'Học kì I năm 2020 - 2021',
         ]);
-        return redirect('admin/list_user')-> with('thongbao','Thêm môn học thành công!');
+        return redirect('admin/list_user')->with('thongbao', 'Thêm môn học thành công!');
     }
 
-    public function list_subject() {
+    public function list_subject()
+    {
         $subject = Subject::paginate(5);
         return view('admin.subject.list_subject', compact('subject'));
     }
 
-    public function getListStudentClass(Request $request) {
+    public function getListStudentClass(Request $request)
+    {
 
         $subject = Subject::all();
         $index   = $request->index;
@@ -66,7 +72,22 @@ class AdminController extends Controller
             ->join('users', 'users.id', '=', 'progresses.user_id')
             ->select('users.*', 'progresses.*')
             ->get();
-            $k       = 1;
+            // dd($user);
+        $k       = 1;
         return view('admin.subject.list_student_in_subject', compact('subject', 'index', 'user', 'k'));
+    }
+
+    //delete students
+    public function destroy(Request $request, $user_id) {
+        $index   = $request->index;
+        // dd($index);
+        $user = Progress::join('subjects', 'subjects.id', '=', 'progresses.subject_id')
+            ->where('ma_mh', $index)
+            ->where('user_id', $user_id)
+            ->select('progresses.*')
+            ->first();
+        // dd($user);
+        $user->delete();
+        return redirect()->back()->with('thongbao', 'Xóa sinh viên thành công!');
     }
 }

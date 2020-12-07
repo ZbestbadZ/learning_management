@@ -32,7 +32,14 @@
     </div>
 
     <script>
-        $("div.alert").delay(1000).slideUp();
+        setTimeout(function() {
+                $("div.alert").remove();
+            }, 2000);
+
+            function myFunction() {
+                if(!confirm("Are You Sure?"))
+                event.preventDefault();
+            }
     </script>
 
 </body>
