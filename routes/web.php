@@ -47,4 +47,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::post('edit_score/{user_id}', 'AdminController@edit_score')->name('edit_score');
     Route::get('edit_rate/{user_id}', 'AdminController@getEdit_rate');
     Route::post('edit_rate/{user_id}', 'AdminController@edit_rate')->name('edit_rate');
+
+    Route::get('add_score/{user_id}', 'AdminController@getAdd_score');
+    Route::post('add_score/{user_id}', 'AdminController@add_score')->name('add_score');
+    Route::get('add_rate/{user_id}', 'AdminController@getAdd_rate');
+    Route::post('add_rate/{user_id}', 'AdminController@add_rate')->name('add_rate');
 });

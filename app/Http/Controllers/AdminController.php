@@ -146,6 +146,28 @@ class AdminController extends Controller
         return redirect('admin/list_subject')->with('thongbao', 'Sửa điểm thành công!');
     }
 
+    //add score
+    public function getAdd_score() {
+        return view('admin.subject.add_score');
+    }
+
+    //add score
+    public function add_score(Request $request, $user_id) {
+        $index   = $request->index;
+        $user = Progress::join('subjects', 'subjects.id', '=', 'progresses.subject_id')
+            ->where('ma_mh', $index)
+            ->where('user_id', $user_id)
+            ->select('progresses.*')
+            ->first();
+        $request->validate([
+            'score' => 'required|max:10|min:0|numeric',
+        ]);
+        $user->update([
+            'score' => $request->score,
+        ]);
+        return redirect('admin/list_subject')->with('thongbao', 'Thêm điểm thành công!');
+    }
+
     //edit rate
     public function getEdit_rate(Request $request, $user_id) {
         $index   = $request->index;
@@ -172,5 +194,27 @@ class AdminController extends Controller
             'rate' => $request->rate,
         ]);
         return redirect('admin/list_subject')->with('thongbao', 'Sửa đánh giá thành công!');
+    }
+
+    //add rate
+    public function getAdd_rate() {
+        return view('admin.subject.add_rate');
+    }
+
+    //add rate
+    public function add_rate(Request $request, $user_id) {
+        $index   = $request->index;
+        $user = Progress::join('subjects', 'subjects.id', '=', 'progresses.subject_id')
+            ->where('ma_mh', $index)
+            ->where('user_id', $user_id)
+            ->select('progresses.*')
+            ->first();
+        $request->validate([
+            'rate' => 'required|max:100|min:10|string',
+        ]);
+        $user->update([
+            'rate' => $request->rate,
+        ]);
+        return redirect('admin/list_subject')->with('thongbao', 'Thêm đánh giá thành công!');
     }
 }
