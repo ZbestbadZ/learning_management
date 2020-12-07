@@ -43,4 +43,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::get('list_student_in_subject', 'AdminController@getListStudentClass');
     Route::delete('/{user_id}', 'AdminController@destroy')->name('destroy');
     Route::post('add_student', 'AdminController@add_student')->name('add_student');
+    Route::get('edit_score/{user_id}', 'AdminController@getEdit_score');
+    Route::post('edit_score/{user_id}', 'AdminController@edit_score')->name('edit_score');
+    Route::get('edit_rate/{user_id}', 'AdminController@getEdit_rate');
+    Route::post('edit_rate/{user_id}', 'AdminController@edit_rate')->name('edit_rate');
 });

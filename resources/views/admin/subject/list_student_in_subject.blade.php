@@ -51,14 +51,14 @@
                                     <td>{{ $list->email }}</td>
                                     <td>
                                         @if (!empty($list->score))
-                                            {{ $list->score }} <a href="#" style="float:right">sửa</a>
+                                            {{ $list->score }} <a href="{{ url("admin/edit_score/{$list->user_id}/?index={$index}") }}" style="float:right">sửa</a>
                                         @else
                                             <a href="#">Cho điểm</a>
                                         @endif
                                     </td>
                                     <td>
                                         @if (!empty($list->rate))
-                                            {{ $list->rate }} <a href="#" style="float:right">sửa</a>
+                                            {{ $list->rate }} <a href="{{ url("admin/edit_rate/{$list->user_id}/?index={$index}") }}" style="float:right">sửa</a>
                                         @else
                                             <a href="#">Đánh giá</a>
                                         @endif
