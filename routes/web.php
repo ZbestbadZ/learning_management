@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth::routes();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -42,4 +42,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::get('list_subject', 'AdminController@list_subject');
     Route::get('list_student_in_subject', 'AdminController@getListStudentClass');
     Route::delete('/{user_id}', 'AdminController@destroy')->name('destroy');
+    Route::post('add_student', 'AdminController@add_student')->name('add_student');
 });

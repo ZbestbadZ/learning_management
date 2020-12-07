@@ -17,6 +17,15 @@
                 <div class="card-header">
                     <h3><i class="fa fa-bars" style="margin-right:15px;"></i>Danh sách sinh viên lớp môn học {{ $index }}
                     </h3>
+                    <form action="{{ url("admin/add_student/?index={$index}") }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" placeholder="Nhập MSSV" id="ma_sv" name="ma_sv">
+                        @error('ma_sv')
+                            <div class="text-danger" ><strong>{{ $message }}</strong></div>
+                        @enderror
+                        
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm sinh viên</button>
+                    </form>
                 </div>
 
                 <div class="card-body" style="background-color: rgb(238, 224, 220)">
