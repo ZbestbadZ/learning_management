@@ -15,6 +15,7 @@
                     <hr>
                     <a href="/admin/list_subject" class="btn btn-primary">Môn học của bạn</a>
                     <hr>
+                    <a href="/admin/update_score" class="btn btn-primary">Cập nhật điểm thi online</a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
     Route::post('add_score/{user_id}', 'AdminController@add_score')->name('add_score');
     Route::get('add_rate/{user_id}', 'AdminController@getAdd_rate');
     Route::post('add_rate/{user_id}', 'AdminController@add_rate')->name('add_rate');
+
+    Route::get('update_score', 'GuzzleController@getRemoteData');
+
 });
