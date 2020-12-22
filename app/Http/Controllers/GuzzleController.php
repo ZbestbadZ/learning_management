@@ -21,7 +21,7 @@ class GuzzleController extends Controller
     //     $data = $response->getBody();
     //     $data = json_decode($data);
     //     dd($data);
-
+    //     return $data
     // }
 
     public function getRemoteData() {

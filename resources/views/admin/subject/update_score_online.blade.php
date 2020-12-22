@@ -30,7 +30,7 @@
                             @for ($i = 1; $i <= 5; $i++)
                                 <tr>
                                     <td>User {{$i}}</td>
-                                    <td>{{rand(7,10)}}</td>
+                                    <td>{{rand(7,9)}}</td>
                                 </tr>
                             @endfor
                         </tbody>
